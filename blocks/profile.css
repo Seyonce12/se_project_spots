@@ -41,3 +41,35 @@
         cursor: pointer;
       }
 
+@media screen and (max-width: 627px) {
+    .profile {
+        flex-direction:column;
+        max-width: 288px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile__avatar{
+        margin-right: 0;
+        height: 80px;
+        width: 80px;
+    }
+
+   .profile__name{
+    font-size: 20px;
+    margin: 0 0 32px;
+   }
+    
+   .profile__description{
+    margin: 0 0 32px;
+   }
+
+   .profile__column{
+    margin: 0 0 20px;
+   }
+
+   .profile__add-btn{
+    margin: 0;
+   }
+}
+
