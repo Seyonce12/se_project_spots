@@ -26,5 +26,17 @@
 }
 
 .profile__edit-btn{
-    margin-top:auto;
-}
+        font-size: 16px;
+        line-height: 1;
+        font-weight: 500;
+        color: #212121;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        margin-top: auto;
+        display: flex;
+        gap: 8px;
+        opacity: 0.7;
+        cursor: pointer;
+      }
+
