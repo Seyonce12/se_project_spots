@@ -63,7 +63,7 @@ Learnings
 ---
 ## Deployment
 - **Live Demo**: [View Spots on GitHub Pages]
-(https://github.com/Seyonce12/se_project_spots/)
-   ```bash
-   git clone https://github.com/Seyonce12/se_project_spots.git
-   Video: https://drive.google.com/file/d/1uTsNhw5t4QIF5Dz7ygd0fCJg9cO5Cgzi/view?t=2
+https://seyonce12.github.io/se_project_spots/
+
+   Video: https://youtu.be/axGMeobqZro
+   
