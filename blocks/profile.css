@@ -35,6 +35,15 @@
 
 .profile__add-btn {
     margin-left: auto;
+    cursor: pointer;
+    position: relative;
+    margin-top: auto;
+    width: 149px;
+    height: 52px;
+    border: none;
+    border-radius: 8px;
+    background-color: #212121;
+    color: #fcf5e5;
 }
 
 .profile__edit-btn{
