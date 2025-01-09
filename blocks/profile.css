@@ -44,6 +44,10 @@
     border-radius: 8px;
     background-color: #212121;
     color: #fcf5e5;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    gap: 3px
 }
 
 .profile__edit-btn{
