@@ -1,5 +1,9 @@
 .cards {
     padding-top: 20px;
+    .cards {
+        border-bottom: 1px solid #fefefe
+      }
+      
 }
 
 .cards__list {
@@ -11,3 +15,16 @@
     justify-content: center;
     gap: 40px 20px;
 }
+
+@media screen and (max-width: 627px) {
+    .card__title {
+      max-width: 200px; 
+      font-size: 16px; 
+    }
+  
+    .card__like-button {
+      width: 18px;
+      height: 16px; 
+    }
+  }
+  
