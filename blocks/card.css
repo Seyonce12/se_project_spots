@@ -51,6 +51,7 @@
 @media screen and (max-width: 627px) {
     .card__image {
         height: 288px; 
+        height: auto;
     }
 
     .card__title {
@@ -63,6 +64,10 @@
         height: 18px;
     }
 
+    .profile {
+        flex-direction: column;
+        max-width: 288px;
+        align-items: center;
+        text-align: center;
     }
-  
-  
+}
