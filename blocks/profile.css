@@ -6,8 +6,8 @@
 
 .profile__avatar {
     margin-right: 20px;
-    width: 1900px;
-    height: 190px;
+    width: 120px;
+    height: 120px;
     border-radius: 8px;
     object-fit: cover;
 }
@@ -19,7 +19,7 @@
 
 .profile__name {
     margin: 0 0 12px;
-    font-weight: 500;
+    font-weight: 600;
     line-height:1.2;
     color: #212121;
     text-overflow: ellipsis;
@@ -40,8 +40,8 @@
     max-width: 420px;
     font-size: 16px;
     line-height: 1.5;
-    color: #212121b2;
-    font-weight: 500;
+    color: #555555;
+    font-weight: 400;
 }
 
 .profile__add-btn {
@@ -63,7 +63,8 @@
 }
 
 .profile__add-btn:hover {
-    opacity: 0.8;
+    background-color: #333333; 
+    transform: scale(1.05);
 }
 
 .profile__edit-btn{
@@ -84,6 +85,7 @@
 
 .profile__edit-btn:hover{
         opacity: 1;
+        transform: scale(1.05);
 }
 @media screen and (max-width: 320px) {
     .profile {

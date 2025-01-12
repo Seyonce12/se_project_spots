@@ -43,7 +43,7 @@
     max-width: 353px;
     margin: 0;
     font-weight: 500; 
-    font-size: 20px;
+    font-size: 16px;
     line-height: 24px;
 }
 
@@ -53,8 +53,7 @@
     }
 
     .card__title {
-        max-width: 200px; 
-        font-size: 16px;
+        max-width: 250px; 
     }
 
     .card__like-btn {
@@ -62,8 +61,3 @@
         height: 18px;
     }
 }
-    .card__like-btn {
-      width: 18px;
-      height: 16px; 
-    }
-  
