@@ -1,7 +1,9 @@
 .card {
-    max-width: 413px;
     margin-bottom: 12px; 
     border-radius: 8px; 
+    max-width: 90%; 
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .card__image {
