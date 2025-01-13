@@ -49,7 +49,7 @@
     cursor: pointer;
     position: relative;
     margin-top: auto;
-    width: 149px;
+    width: 100px;
     height: 52px;
     border: none;
     border-radius: 8px;
@@ -104,13 +104,14 @@
 
     .profile__name {
         font-size: 20px;
-        margin: 0 0 32px;
+        margin: 0 0 16px;
         max-width: 288px;
     }
 
     .profile__description {
-        margin: 0 0 32px;
+        margin: 0 0 16px;
         max-width: 288px;
+        font-size: 16px;
     }
 
     .profile__column {
