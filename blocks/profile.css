@@ -49,7 +49,6 @@
     cursor: pointer;
     position: relative;
     margin-top: auto;
-    width: 100px;
     height: 52px;
     border: none;
     border-radius: 8px;
@@ -61,6 +60,7 @@
     gap: 8px;
     font-weight: 500; 
     transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 150px;
 }
 
 .profile__add-btn:hover {
@@ -120,6 +120,7 @@
 
     .profile__add-btn {
         margin: 0;
+        width: 100%;
     }
 
     .profile__edit-btn {
