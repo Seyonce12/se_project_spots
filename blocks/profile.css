@@ -94,22 +94,23 @@
         max-width: 288px;
         align-items: center;
         text-align: center;
+        padding-top: 20px;
     }
 
     .profile__avatar {
-        margin-right: 0;
+        margin: 0 0 12px;
         width: 80px;
         height: 80px;
     }
 
     .profile__name {
         font-size: 20px;
-        margin: 0 0 16px;
+        margin: 0 0 6px;
         max-width: 288px;
     }
 
     .profile__description {
-        margin: 0 0 16px;
+        margin: 0 0 32px;
         max-width: 288px;
         font-size: 16px;
     }
