@@ -99,7 +99,7 @@
     }
 
     .profile__avatar {
-        margin: 0 0 12px;
+        margin: 0;
         width: 80px;
         height: 80px;
     }
