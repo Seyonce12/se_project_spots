@@ -42,14 +42,17 @@ const jobInput = profileFormElement.querySelector('input[id="description"]');
 //functions
 function openModal() {
   editModal.classList.add("modal_opened");
-  getCurrentProfileValues();
 }
 
 function closeModal() {
   editModal.classList.remove("modal_opened");
 }
 
-profileEditButton.addEventListener("click", openModal);
+profileEditButton.addEventListener("click", ()=>{
+  getCurrentProfileValues();
+  openModal();
+});
+
 editModalCloseBtn.addEventListener("click", closeModal);
 
 function getCurrentProfileValues()
@@ -69,3 +72,31 @@ function handleProfileFormSubmit(evt){
 }
 
 profileFormElement.addEventListener('submit',handleProfileFormSubmit);
+
+//card template
+
+//function to fill the cards
+function getCardElement(data) {
+  const cardElement = document.createElement('li');
+  cardElement.classList.add('card');
+  const cardTitle = data.name;
+  const cardImage = data.link;
+  cardElement.innerHTML = `
+    <img src="${cardImage}" alt="${cardTitle}" class="card__image">
+    <div class="card__content">
+      <h2 class="card__title">${cardTitle}</h2>
+      <button type="button" class="card__like-btn" aria-label="Like ${cardTitle}"></button>
+    </div>
+  `;
+
+  return cardElement;
+}
+
+//card parent ul element
+const cardsList = document.querySelector('.cards__list');
+
+// Loop through the initialCards array and append each card to the parent
+initialCards.forEach(cardData => {
+  const cardElement = getCardElement(cardData);
+  cardsList.appendChild(cardElement);
+});
