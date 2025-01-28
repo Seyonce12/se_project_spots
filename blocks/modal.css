@@ -39,8 +39,10 @@ position: relative;
   cursor: pointer;
 }
 
-.modal__close-btn:hover{
-background-color: grey;
+.modal__close-btn img{
+width: 80%;
+height: 60%;
+position: relative;
 }
 
 .modal__title{
@@ -55,6 +57,8 @@ background-color: grey;
   flex-direction: column;
   gap: 8px;
   margin-bottom: 32px;
+  opacity: 0.6;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
 }
 
 .modal__submit-btn{
@@ -104,5 +108,9 @@ background-color: grey;
 
 .modal__submit-btn{
     width: 100%;
+}
+
+.modal__container{
+  padding: 12px;
 }
 }
