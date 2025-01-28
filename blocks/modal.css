@@ -19,6 +19,7 @@ visibility: visible;
 
 .modal__container{
 background: #fff;
+border-radius: 8px;
 padding: 32px 50px;
 max-width: 730px;
 width: 100%;
@@ -31,14 +32,22 @@ position: relative;
   top: 32px;
   right: 50px;
   width: 40px;
-  height: 40px;  
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal__close-btn:hover{
+background-color: grey;
 }
 
 .modal__title{
-  margin: 0 0 32px; 
+  margin: 0 0 32px;
   font-weight: 500;
   font-size: 32px;
-  list-style: 1;
+  line-height: 1;
 }
 
 .modal__label{
@@ -51,26 +60,37 @@ position: relative;
 .modal__submit-btn{
     width: 156px;
     padding: 18px 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: #212121;
+    color: #fcf5e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modal__submit-btn:hover{
+  opacity: 0.8;
 }
 
 .modal__input{
     padding: 16px 12px;
-
+    border-radius: 8px;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 627px){
   .modal{
     padding: 0 10px;
   }
-}
-
-.modal__container{
-    padding: 12px; 
-}
 
 .modal__title{
     font-size: 20px;
-    margin-bottom: 24px;
+    margin:10px 0 34px;
 }
 
 .modal__close-btn{
@@ -84,4 +104,5 @@ position: relative;
 
 .modal__submit-btn{
     width: 100%;
+}
 }

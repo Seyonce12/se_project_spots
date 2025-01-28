@@ -1,27 +1,27 @@
 const initialCards = [
     {
-      name: "Val Thorens",
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+      name: "Val Thorens",
     },
     {
-      name: "Restaurant terrace",
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+      name: "Restaurant terrace",
     },
     {
-      name: "An outdoor cafe",
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+      name: "An outdoor cafe",
     },
     {
-      name: "A very long bridge, over the forest and through the trees",
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+      name: "A very long bridge, over the forest and through the trees",
     },
     {
-      name: "Tunnel with morning light",
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+      name: "Tunnel with morning light",
     },
     {
-      name: "Mountain house",
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+      name: "Mountain house",
     },
   ];
 
@@ -35,9 +35,9 @@ const profileNameElement = document.querySelector(".profile__name");
 const profileJobElement = document.querySelector(".profile__description");
 
 //profile form elements
-const profileFormElement = document.querySelector('form[name="edit-profile"]');
-const nameInput = profileFormElement.querySelector('input[id="name"]');
-const jobInput = profileFormElement.querySelector('input[id="description"]');
+const editFormElement = document.querySelector('form[name="edit-profile"]');
+const nameInput = document.querySelector("#profile-name-input");
+const jobInput = document.querySelector("#profile-description-input");
 
 //functions
 function openModal() {
@@ -48,7 +48,7 @@ function closeModal() {
   editModal.classList.remove("modal_opened");
 }
 
-profileEditButton.addEventListener("click", ()=>{
+profileEditButton.addEventListener("click", function(){
   getCurrentProfileValues();
   openModal();
 });
@@ -71,24 +71,21 @@ function handleProfileFormSubmit(evt){
   closeModal();
 }
 
-profileFormElement.addEventListener('submit',handleProfileFormSubmit);
+editFormElement.addEventListener('submit',handleProfileFormSubmit);
 
 //card template
+const cardTemplate = document.querySelector("#card-template");
 
 //function to fill the cards
 function getCardElement(data) {
-  const cardElement = document.createElement('li');
-  cardElement.classList.add('card');
-  const cardTitle = data.name;
-  const cardImage = data.link;
-  cardElement.innerHTML = `
-    <img src="${cardImage}" alt="${cardTitle}" class="card__image">
-    <div class="card__content">
-      <h2 class="card__title">${cardTitle}</h2>
-      <button type="button" class="card__like-btn" aria-label="Like ${cardTitle}"></button>
-    </div>
-  `;
-
+  const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
+  const cardNameEl = cardElement.querySelector(".card__title");
+  cardNameEl.textContent = data.name;
+  const cardImageEl = cardElement.querySelector(".card__image");
+  cardImageEl.src = data.link;
+  cardImageEl.alt = data.name || 'No Image';
+  const likeButtonEl = cardElement.querySelector(".card__like-btn");
+  likeButtonEl.setAttribute("aria-label", "Like " + data.name);
   return cardElement;
 }
 
@@ -98,5 +95,5 @@ const cardsList = document.querySelector('.cards__list');
 // Loop through the initialCards array and append each card to the parent
 initialCards.forEach(cardData => {
   const cardElement = getCardElement(cardData);
-  cardsList.appendChild(cardElement);
+  cardsList.prepend(cardElement);
 });
