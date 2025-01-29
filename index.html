@@ -1,75 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A platform to share and explore beautiful spots around the world.">
-    <meta name="author" content="Sabrina Florence">
-    <meta name="keywords" content="HTML, CSS, Travel, Spots">
-    <link rel="stylesheet" href="pages/index.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="A platform to share and explore beautiful spots around the world."
+    />
+    <meta name="author" content="Sabrina Florence" />
+    <meta name="keywords" content="HTML, CSS, Travel, Spots" />
+    <link rel="stylesheet" href="pages/index.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <title>Spots</title>
-</head>
-<body class="page">
+  </head>
+  <body class="page">
     <div class="page__content">
-        <header class="header">
-            <img src="./images/logo.svg" alt="Spots logo" class="header__logo">
-        </header>
+      <header class="header">
+        <img src="./images/logo.svg" alt="Spots logo" class="header__logo" />
+      </header>
 
-        <main class="content">
-            <section class="profile page__section">
-                <img src="./images/avatar.jpg" alt="Bessie Coleman" class="profile__avatar">
-                <div class="profile__column">
-                    <h1 class="profile__name">Bessie Coleman</h1>
-                    <p class="profile__description">Civil Aviator</p>
-                    <button type="button" class="profile__edit-btn" aria-label="Edit Profile">
-                        <img src="./images/pencil.svg" alt="Edit Profile Icon"> Edit Profile
-                    </button>
+      <main class="content">
+        <section class="profile page__section">
+          <img
+            src="./images/avatar.jpg"
+            alt="Bessie Coleman"
+            class="profile__avatar"
+          />
+          <div class="profile__column">
+            <h1 class="profile__name">Bessie Coleman</h1>
+            <p class="profile__description">Civil Aviator</p>
+            <button
+              type="button"
+              class="profile__edit-btn"
+              aria-label="Edit Profile"
+            >
+              <img src="./images/pencil.svg" alt="Edit Profile Icon" /> Edit
+              Profile
+            </button>
+          </div>
+          <button
+            type="button"
+            class="profile__add-btn"
+            aria-label="Add New Post"
+          >
+            <img src="./images/plus.svg" alt="New Post Icon" /> New Post
+          </button>
+        </section>
+
+        <section class="cards page__section">
+          <ul class="cards__list">
+            <template id="card-template">
+              <li class="card">
+                <img src="" alt="" class="card__image" />
+                <div class="card__content">
+                  <h2 class="card__title"></h2>
+                  <button
+                    type="button"
+                    class="card__like-btn"
+                    aria-label=""
+                  ></button>
                 </div>
-                <button type="button" class="profile__add-btn" aria-label="Add New Post">
-                    <img src="./images/plus.svg" alt="New Post Icon"> New Post
-                </button>
-            </section>
+              </li>
+            </template>
+          </ul>
+        </section>
+      </main>
 
-            <section class="cards page__section">
-                <ul class="cards__list">
-                    <template id="card-template">
-                      <li class="card">
-                        <img src="" alt="" class="card__image">
-                        <div class="card__content">
-                          <h2 class="card__title"></h2>
-                          <button type="button" class="card__like-btn" aria-label=""></button>
-                        </div>
-                    </li>
-                    </template>
-                </ul>
-            </section>
-        </main>
+      <footer class="footer page__section">
+        <p class="footer__copyright">2025 &copy; Spots</p>
+      </footer>
 
-        <footer class="footer page__section">
-            <p class="footer__copyright">2025 &copy; Spots</p>
-        </footer>
-
-        <div class="modal" id="edit-modal">
-            <div class="modal__container">
-                <button type="button" class="modal__close-btn" aria-label="Close Modal"><img class="modal__close-btn__image" src="./images/close.ico"></button>
-                <h2 class="modal__title">Edit Profile</h2>
-                <form name="edit-profile" class="modal__form">
-                    <label for="profile-name-input" class="modal__label">
-                        Name
-                        <input id="profile-name-input" type="text" class="modal__input" placeholder="Type your name">
-                    </label>
-                    <label for="profile-description-input" class="modal__label">
-                        Description
-                        <input id="profile-description-input" type="text" class="modal__input" placeholder="Describe yourself">
-                    </label>
-                    <button type="submit" class="modal__submit-btn">Save</button>
-                </form>
-            </div>
+      <div class="modal" id="edit-modal">
+        <div class="modal__container">
+          <button
+            type="button"
+            class="modal__close-btn"
+            aria-label="Close Modal"
+          >
+            <img class="modal__close-btn__image" src="./images/close.ico" />
+          </button>
+          <h2 class="modal__title">Edit Profile</h2>
+          <form name="edit-profile" class="modal__form">
+            <label for="profile-name-input" class="modal__label">
+              Name
+              <input
+                id="profile-name-input"
+                type="text"
+                class="modal__input"
+                placeholder="Type your name"
+              />
+            </label>
+            <label for="profile-description-input" class="modal__label">
+              Description
+              <input
+                id="profile-description-input"
+                type="text"
+                class="modal__input"
+                placeholder="Describe yourself"
+              />
+            </label>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
         </div>
+      </div>
     </div>
 
     <script defer src="./scripts/index.js"></script>
-</body>
+  </body>
 </html>
