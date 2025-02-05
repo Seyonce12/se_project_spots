@@ -65,5 +65,5 @@ Learnings
 - **Live Demo**: [View Spots on GitHub Pages]
 https://seyonce12.github.io/se_project_spots/
 
-   Video: https://youtu.be/axGMeobqZro
+ 
    
