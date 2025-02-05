@@ -46,6 +46,10 @@ const jobInput = editModal.querySelector("#profile-description-input");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 
+const previewModal = document.querySelector("#preview-modal");
+const previewModalImageEl = previewModal.querySelector(".modal__image");
+const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
+const previewModalCloseBtn = previewModal.querySelector(".modal__close_type_preview");
 //functions
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -113,11 +117,18 @@ function getCardElement(data) {
   const cardNameEl = cardElement.querySelector(".card__title");
   cardNameEl.textContent = data.name;
   const cardImageEl = cardElement.querySelector(".card__image");
-  cardImageEl.src = data.link;
-  cardImageEl.alt = data.name || "No Image";
   const likeButtonEl = cardElement.querySelector(".card__like-btn");
   const deleteButtonEl = cardElement.querySelector(".card__delete-btn");
 
+  cardImageEl.src = data.link;
+  cardImageEl.alt = data.name || "No Image";
+
+cardImageEl.addEventListener("click",(e)=>{
+openModal(previewModal);
+previewModalImageEl.src = data.link;
+previewModalImageEl.alt = data.name;
+previewModalCaptionEl.textContent = data.name;
+});
   likeButtonEl.setAttribute("aria-label", "Like " + data.name);
   likeButtonEl.addEventListener("click", () => {
     likeButtonEl.classList.toggle("card__like-btn_liked");
@@ -128,6 +139,10 @@ function getCardElement(data) {
   });
   return cardElement;
 }
+
+previewModalCloseBtn.addEventListener("click",()=>{
+  closeModal(previewModal);
+})
 
 //card parent ul element
 const cardsList = document.querySelector(".cards__list");

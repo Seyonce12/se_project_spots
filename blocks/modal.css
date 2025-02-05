@@ -27,6 +27,11 @@
   position: relative;
 }
 
+.modal__content_type_preview {
+  padding: 0;
+  background-color: transparent;
+}
+
 .modal__close-btn {
   position: absolute;
   top: 32px;
@@ -43,6 +48,14 @@
   width: 80%;
   height: 60%;
   position: relative;
+}
+
+.modal__close_type_preview {
+  background-image: url("../images/close-light.png");
+  background-color: transparent;
+  top: -5px;
+  right: -40px;
+  opacity: 1;
 }
 
 .modal__title {
@@ -90,6 +103,26 @@
   font-weight: bold;
 }
 
+.modal__image {
+  width: 100%;
+  object-fit: contain;
+  max-width: 80vw;
+  max-height: 80vh;
+  border-radius: 10px;
+  background-color: black;
+}
+
+.modal__caption{
+  padding: 15px 20px;
+  color: #fff;
+  background-color: black;
+  border-radius: 10px;
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
 @media screen and (max-width: 627px) {
   .modal {
     padding: 0 10px;
@@ -115,5 +148,9 @@
 
   .modal__container {
     padding: 12px;
+  }
+
+  .modal__content_type_preview{
+    left: 20px;
   }
 }
