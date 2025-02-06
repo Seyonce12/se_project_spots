@@ -40,6 +40,7 @@
 
 .card__like-btn_liked {
   background-image: url("../images/like.png");
+  background-color: transparent;
   opacity: 1;
 }
 
@@ -60,7 +61,7 @@
   opacity: 1;
   position: absolute;
   right: 5px;
-  top:5px;
+  top: 5px;
 }
 
 .card__delete-btn:hover {

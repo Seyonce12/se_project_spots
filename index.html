@@ -53,7 +53,7 @@
             <template id="card-template">
               <li class="card">
                 <button type="button" class="card__delete-btn"></button>
-                <img src="" alt="" class="card__image" />
+                <img src="" alt="Card Image" class="card__image" />
                 <div class="card__content">
                   <h2 class="card__title"></h2>
                   <button
@@ -78,11 +78,9 @@
             type="button"
             class="modal__close-btn"
             aria-label="Close Modal"
-          >
-            <img class="modal__close-btn__image" src="./images/close.ico" />
-          </button>
+          ></button>
           <h2 class="modal__title">Edit Profile</h2>
-          <form name="edit-profile" class="modal__form">
+          <form name="edit-profile" id="profle-form" class="modal__form">
             <label for="profile-name-input" class="modal__label">
               Name
               <input
@@ -112,11 +110,9 @@
             type="button"
             class="modal__close-btn"
             aria-label="Close Modal"
-          >
-            <img class="modal__close-btn__image" src="./images/close.ico" />
-          </button>
+          ></button>
           <h2 class="modal__title">New Post</h2>
-          <form name="add-card-form" class="modal__form">
+          <form name="add-card-form" id="card-form" class="modal__form">
             <label for="add-card-link-input" class="modal__label">
               Image Link
               <input
@@ -144,13 +140,12 @@
       <div class="modal" id="preview-modal">
         <div class="modal__container modal__content_type_preview">
           <button
-          type="button"
-          class="modal__close-btn modal__close_type_preview"
-          aria-label="Close Modal"
-        >
-        </button>
-        <img class="modal__image" src="" alt="">
-        <p class="modal__caption"></p>
+            type="button"
+            class="modal__close_type_preview modal__close-btn"
+            aria-label="Close Modal"
+          ></button>
+          <img class="modal__image" src="" alt="Modal Image" />
+          <p class="modal__caption"></p>
         </div>
       </div>
     </div>
