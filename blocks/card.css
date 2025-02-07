@@ -42,6 +42,10 @@
   background-image: url("../images/like.png");
   background-color: transparent;
   opacity: 1;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
 }
 
 .card__like-btn_liked:hover {
