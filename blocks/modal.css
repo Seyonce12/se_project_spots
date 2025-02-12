@@ -116,7 +116,7 @@
   font-family: Poppins;
   padding: 16px 12px;
   border-radius: 8px;
-  font-weight:500;
+  font-weight: 500;
   font-size: 20px;
   line-height: 20px;
 }
@@ -131,7 +131,7 @@
 }
 
 .modal__input-error {
-  border: 1px solid #FF0000;
+  border: 1px solid #ff0000;
   opacity: 0.6;
 }
 
@@ -158,8 +158,8 @@
   margin-top: 5px;
 }
 
-.modal__error{
-  color: #FF0000;
+.modal__error {
+  color: #ff0000;
   font-family: Poppins;
   font-size: 16px;
   font-weight: 500;
@@ -204,7 +204,7 @@
     opacity: 1;
   }
 
-  .modal__caption{
+  .modal__caption {
     font-size: 16px;
     display: inline-block;
     white-space: wrap;

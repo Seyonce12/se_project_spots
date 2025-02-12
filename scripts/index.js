@@ -39,6 +39,7 @@ closeButtons.forEach((button) => {
 });
 
 //modals
+const allModals = document.querySelectorAll(".modal");
 const editModal = document.querySelector("#edit-modal");
 const cardModal = document.querySelector("#add-card-modal");
 const previewModal = document.querySelector("#preview-modal");
@@ -56,7 +57,7 @@ const nameInput = editModal.querySelector("#profile-name-input");
 const jobInput = editModal.querySelector("#profile-description-input");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
-
+const cardModalSubmitButton = cardModal.querySelector(".modal__submit-btn");
 //preview modal elemnts
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
@@ -64,14 +65,31 @@ const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 //functions
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", escapeCloseModal);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", escapeCloseModal);
+}
+
+allModals.forEach((modal) => {
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      closeModal(modal);
+    }
+  });
+});
+
+function escapeCloseModal(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    closeModal(openedModal);
+  }
 }
 
 profileEditButton.addEventListener("click", function () {
-  getCurrentProfileValues();
+  getCurrentProfileValues(resetValidation);
   openModal(editModal);
 });
 
@@ -79,9 +97,10 @@ cardModalBtn.addEventListener("click", function () {
   openModal(cardModal);
 });
 
-function getCurrentProfileValues() {
+function getCurrentProfileValues(callback) {
   nameInput.value = profileNameElement.textContent;
   jobInput.value = profileJobElement.textContent;
+  callback([nameInput, jobInput]);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -101,6 +120,8 @@ function handleAddCardSubmit(e) {
     link: cardLinkInput.value,
   });
   e.target.reset();
+  //disable submit button
+  disableButton(cardModalSubmitButton);
   closeModal(cardModal);
 }
 
