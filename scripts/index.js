@@ -65,12 +65,12 @@ const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 //functions
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", escapeCloseModal);
+  document.addEventListener("keydown", handleEscape);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", escapeCloseModal);
+  document.removeEventListener("keydown", handleEscape);
 }
 
 allModals.forEach((modal) => {
@@ -81,7 +81,7 @@ allModals.forEach((modal) => {
   });
 });
 
-function escapeCloseModal(evt) {
+function handleEscape(evt) {
   if (evt.key === "Escape") {
     const openedModal = document.querySelector(".modal_opened");
     closeModal(openedModal);
@@ -100,7 +100,7 @@ cardModalBtn.addEventListener("click", function () {
 function getCurrentProfileValues(callback) {
   nameInput.value = profileNameElement.textContent;
   jobInput.value = profileJobElement.textContent;
-  callback([nameInput, jobInput]);
+  callback([nameInput, jobInput], settings);
 }
 
 function handleProfileFormSubmit(evt) {

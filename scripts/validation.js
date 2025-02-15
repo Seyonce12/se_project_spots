@@ -2,7 +2,7 @@ const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
-  inactiveButtonClass: ".modal__submit-btn-disabled",
+  inactiveButtonClass: ".modal__submit-btn_disabled",
   inputErrorClass: ".modal__input-error",
   errorClass: ".modal__error",
 };
@@ -31,9 +31,9 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const resetValidation = (inputList) => {
+const resetValidation = (inputList, config) => {
   inputList.forEach((input) => {
-    hideInputError(input, settings);
+    hideInputError(input, config);
   });
 };
 
