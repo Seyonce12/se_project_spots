@@ -10,7 +10,7 @@ class Api {
             headers: this.headers,
         });
 
-        if (method === "PATCH") {
+        if (method === "PATCH" || method === "POST") {
             res = await fetch(this.baseUrl + endpoint, {
                 method: method,
                 headers: this.headers,
@@ -37,6 +37,10 @@ class Api {
     
     async updateProfileInformation(data) {
         return this.makeRequest('/users/me', "PATCH", data)
+    }
+
+    async addNewCard(data) {
+        return this.makeRequest('/cards', "POST", data)
     }
   }
 

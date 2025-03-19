@@ -132,17 +132,6 @@ function handleProfileFormSubmit(evt) {
   closeModal(editModal);
 }
 
-function handleAddCardSubmit(e) {
-  e.preventDefault();
-  renderCard({
-    name: cardNameInput.value,
-    link: cardLinkInput.value,
-  });
-  e.target.reset();
-  //disable submit button
-  disableButton(cardModalSubmitButton);
-  closeModal(cardModal);
-}
 
 editFormElement.addEventListener("submit", handleProfileFormSubmit);
 cardFormElement.addEventListener("submit", handleAddCardSubmit);
@@ -218,6 +207,24 @@ function displayInitialCards() {
     });
     }).catch((err) => console.error(err))
 }
+
+function handleAddCardSubmit(e) {
+  e.preventDefault();
+  api.addNewCard({
+    name: cardNameInput.value,
+    link: cardLinkInput.value,
+  }).then((dd) => 
+      renderCard({
+        name: cardNameInput.value,
+        link: cardLinkInput.value,
+      })
+    ).catch((err) => console.error(err));
+  e.target.reset();
+  //disable submit button
+  disableButton(cardModalSubmitButton);
+  closeModal(cardModal);
+}
+
 
 // display user information
 displayUserInformation()
