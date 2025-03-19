@@ -47,6 +47,14 @@ class Api {
     async deleteCard(id) {
         return this.makeRequest(`/cards/${id}`, "DELETE")
     }
+
+    async likeCard(id) {
+        return this.makeRequest(`/cards/${id}/likes`, "PUT")
+    }
+
+    async unlikeCard(id) {
+        return this.makeRequest(`/cards/${id}/likes`, "DELETE")
+    }
   }
 
 

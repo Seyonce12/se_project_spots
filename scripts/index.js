@@ -10,8 +10,8 @@ const api = new Api({
   }
 });
 
-let currentCardToDelete = ''
-let cardElementToDelete = ''
+let selectedCardId = ''
+let selectedCardEl = ''
 
 const initialCards = [
   {
@@ -158,6 +158,8 @@ function getCardElement(data) {
   const likeButtonEl = cardElement.querySelector(".card__like-btn");
   const deleteButtonEl = cardElement.querySelector(".card__delete-btn");
 
+  if (data.isLiked === true) likeButtonEl.classList.add("card__like-btn_liked")
+
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name || "No Image";
 
@@ -169,12 +171,22 @@ function getCardElement(data) {
   });
   likeButtonEl.setAttribute("aria-label", "Like " + data.name);
   likeButtonEl.addEventListener("click", () => {
-    likeButtonEl.classList.toggle("card__like-btn_liked");
+    if (likeButtonEl.classList.contains("card__like-btn_liked")) {
+      api.unlikeCard(data._id).then((dd) => {
+        likeButtonEl.classList.toggle("card__like-btn_liked");
+      }).catch((err) => console.error(err))
+    }
+    else {
+      api.likeCard(data._id).then((dd) => {
+        likeButtonEl.classList.toggle("card__like-btn_liked");
+      }).catch((err) => console.error(err))
+    }
+    
   });
 
   deleteButtonEl.addEventListener("click", (e) => {
-    currentCardToDelete = e.target.parentElement.getAttribute('data-id')
-    cardElementToDelete = cardElement
+    selectedCardId = e.target.parentElement.getAttribute('data-id')
+    selectedCardEl = cardElement
     openModal(deleteModal)
     
     //cardElement.remove();
@@ -202,10 +214,14 @@ function renderCard(item, method = "prepend") {
 console.log(deleteModal)
 deleteModalDeleteBtn.addEventListener('click', () => {
   //console.log(currentCardToDelete)
-  api.deleteCard(currentCardToDelete).then((dd) => {
-    cardElementToDelete.remove()
+  api.deleteCard(selectedCardId).then((dd) => {
+    selectedCardEl.remove()
     closeModal(deleteModal)
   }).catch((err) => console.error(err))
+})
+
+deleteModalCancleBtn.addEventListener('click', () => {
+  closeModal(deleteModal)
 })
 
 // user information
