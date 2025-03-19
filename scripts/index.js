@@ -5,7 +5,7 @@ import Api from "../utils/Api";
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    authorization: "e6198596-f5e3-4af3-863c-34adb4662e36",
     "Content-Type": "application/json"
   }
 });
@@ -59,6 +59,7 @@ const previewModal = document.querySelector("#preview-modal");
 //profile elements
 const profileNameElement = document.querySelector(".profile__name");
 const profileJobElement = document.querySelector(".profile__description");
+const profileAvatartElement = document.querySelector(".profile__avatar")
 
 //forms
 const editFormElement = document.forms["profle-form"];
@@ -119,9 +120,15 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   const nameValue = nameInput.value;
   const jobValue = jobInput.value;
-  profileNameElement.textContent = nameValue.trim();
-  profileJobElement.textContent = jobValue.trim();
-  //close modal
+
+  api.updateProfileInformation({name: nameValue, about: jobValue}).then(((dd) => {
+    profileNameElement.textContent = nameValue.trim();
+    profileJobElement.textContent = jobValue.trim();
+  })).catch((err) => {
+    console.error(err)
+  })
+
+  // close modal
   closeModal(editModal);
 }
 
@@ -178,13 +185,44 @@ function getCardElement(data) {
 const cardsList = document.querySelector(".cards__list");
 
 // Loop through the initialCards array and append each card to the parent
+/*
 initialCards.forEach((cardData) => {
   renderCard(cardData, "append");
 });
+*/
 
 function renderCard(item, method = "prepend") {
   const cardElement = getCardElement(item);
   cardsList[method](cardElement);
 }
+
+
+// functions
+
+// user information
+function displayUserInformation() {
+  api.getUserInformation().then((dd) => {
+    profileNameElement.textContent = dd.name
+    profileJobElement.textContent = dd.about
+    profileAvatartElement.setAttribute('src', dd.avatar)
+    console.log(dd)
+  }).catch((err) => console.error(err))
+}
+
+// initial cards
+function displayInitialCards() {
+  api.getInitialCards().then((dd) => {
+    console.log(dd)
+    dd.forEach((cardData) => {
+      renderCard(cardData, "append");
+    });
+    }).catch((err) => console.error(err))
+}
+
+// display user information
+displayUserInformation()
+
+displayInitialCards()
+
 
 

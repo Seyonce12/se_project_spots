@@ -1,13 +1,43 @@
 class Api {
     constructor(options) {
       // constructor body
+      this.baseUrl = options.baseUrl
+      this.headers = options.headers
     }
-  
-    getInitialCards() {
-      // ...
+
+    async makeRequest(endpoint, method = "GET", body = {}) {
+        let res = await fetch(this.baseUrl + endpoint, {
+            headers: this.headers,
+        });
+
+        if (method === "PATCH") {
+            res = await fetch(this.baseUrl + endpoint, {
+                method: method,
+                headers: this.headers,
+                body: JSON.stringify(body)
+            });
+        }
+        
+    
+        if (res.ok) {
+            return res.json();
+        }
+        return await Promise.reject(`Error: ${res.status}`);
     }
-  
+
+    
     // other methods for working with the API
+    async getUserInformation() {
+        return this.makeRequest('/users/me')
+    }
+
+    async getInitialCards() {
+        return this.makeRequest('/cards')
+    }
+    
+    async updateProfileInformation(data) {
+        return this.makeRequest('/users/me', "PATCH", data)
+    }
   }
 
 
