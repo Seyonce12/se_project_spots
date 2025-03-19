@@ -10,6 +10,9 @@ const api = new Api({
   }
 });
 
+let currentCardToDelete = ''
+let cardElementToDelete = ''
+
 const initialCards = [
   {
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
@@ -55,6 +58,7 @@ const allModals = document.querySelectorAll(".modal");
 const editModal = document.querySelector("#edit-modal");
 const cardModal = document.querySelector("#add-card-modal");
 const previewModal = document.querySelector("#preview-modal");
+const deleteModal = document.querySelector("#delete-card-modal")
 
 //profile elements
 const profileNameElement = document.querySelector(".profile__name");
@@ -75,6 +79,9 @@ const cardModalSubmitButton = cardModal.querySelector(".modal__submit-btn");
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 
+// delete modal elements
+const deleteModalDeleteBtn = deleteModal.querySelector(".modal__delete-btn")
+const deleteModalCancleBtn = deleteModal.querySelector(".modal__cancel-btn")
 //functions
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -146,6 +153,7 @@ function getCardElement(data) {
     .cloneNode(true);
   const cardNameEl = cardElement.querySelector(".card__title");
   cardNameEl.textContent = data.name;
+  cardElement.setAttribute('data-id', data._id)
   const cardImageEl = cardElement.querySelector(".card__image");
   const likeButtonEl = cardElement.querySelector(".card__like-btn");
   const deleteButtonEl = cardElement.querySelector(".card__delete-btn");
@@ -165,7 +173,11 @@ function getCardElement(data) {
   });
 
   deleteButtonEl.addEventListener("click", (e) => {
-    cardElement.remove();
+    currentCardToDelete = e.target.parentElement.getAttribute('data-id')
+    cardElementToDelete = cardElement
+    openModal(deleteModal)
+    
+    //cardElement.remove();
   });
   return cardElement;
 }
@@ -187,6 +199,14 @@ function renderCard(item, method = "prepend") {
 
 
 // functions
+console.log(deleteModal)
+deleteModalDeleteBtn.addEventListener('click', () => {
+  //console.log(currentCardToDelete)
+  api.deleteCard(currentCardToDelete).then((dd) => {
+    cardElementToDelete.remove()
+    closeModal(deleteModal)
+  }).catch((err) => console.error(err))
+})
 
 // user information
 function displayUserInformation() {
@@ -224,6 +244,7 @@ function handleAddCardSubmit(e) {
   disableButton(cardModalSubmitButton);
   closeModal(cardModal);
 }
+
 
 
 // display user information

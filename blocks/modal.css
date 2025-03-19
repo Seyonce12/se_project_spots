@@ -166,6 +166,32 @@
   line-height: 17.6px;
 }
 
+.modal_delete-btns {
+  margin: 0 auto;
+}
+
+.modal__delete-btn, .modal__cancel-btn {
+  width: 156px;
+  padding: 18px 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background-color: #FF6565;
+  color: #fcf5e5;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modal__cancel-btn {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  margin-left: 19px;
+}
+
 @media screen and (max-width: 627px) {
   .modal {
     padding: 0 10px;

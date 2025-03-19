@@ -8,6 +8,7 @@ class Api {
     async makeRequest(endpoint, method = "GET", body = {}) {
         let res = await fetch(this.baseUrl + endpoint, {
             headers: this.headers,
+            method: method
         });
 
         if (method === "PATCH" || method === "POST") {
@@ -41,6 +42,10 @@ class Api {
 
     async addNewCard(data) {
         return this.makeRequest('/cards', "POST", data)
+    }
+
+    async deleteCard(id) {
+        return this.makeRequest(`/cards/${id}`, "DELETE")
     }
   }
 
