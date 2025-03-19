@@ -1,2 +1,3 @@
 .DS_Store
-testing
+dist
+node_modules
