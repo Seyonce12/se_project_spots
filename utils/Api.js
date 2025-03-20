@@ -55,6 +55,10 @@ class Api {
     async unlikeCard(id) {
         return this.makeRequest(`/cards/${id}/likes`, "DELETE")
     }
+
+    async editAvatar(data) {
+        return this.makeRequest('/users/me/avatar', "PATCH", data)
+    }
   }
 
 

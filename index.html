@@ -22,11 +22,15 @@
 
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="./images/avatar.jpg"
-            alt="Bessie Coleman"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-container">
+              <img
+              src="./images/avatar.jpg"
+              alt="Bessie Coleman"
+              class="profile__avatar"
+            />
+            <button class="profile__avatar-edit"><img src="./images/pencil-white.svg" alt="Edit Profile Icon" /> <span class="profile__avatar-text">Edit Avatar</span></button>
+          </div>
+          
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
@@ -177,6 +181,32 @@
           <button type="button" class="modal__cancel-btn">Cancel</button>
         </div>
         <span class="modal__error"></span>
+      </div>
+    </div>
+
+    <div class="modal" id="edit-avatar-modal">
+      <div class="modal__container">
+        <button
+          type="button"
+          class="modal__close-btn"
+          aria-label="Close Modal"
+        ></button>
+        <h2 class="modal__title">Edit Avatar</h2>
+        <form name="edit-avatar-form" id="avatar-form" class="modal__form">
+          <label for="edit-avatar-link-input" class="modal__label">
+            Image Link
+            <input
+              id="edit-avatar-link-input"
+              type="url"
+              class="modal__input"
+              name="link"
+              placeholder="Paste a link to the picture"
+              required
+            />
+            <span class="modal__error"></span>
+          </label>
+          <button type="submit" class="modal__submit-btn">Save</button>
+        </form>
       </div>
     </div>
 

@@ -13,36 +13,11 @@ const api = new Api({
 let selectedCardId = ''
 let selectedCardEl = ''
 
-const initialCards = [
-  {
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-    name: "Val Thorens",
-  },
-  {
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-    name: "Restaurant terrace",
-  },
-  {
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-    name: "An outdoor cafe",
-  },
-  {
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-    name: "A very long bridge, over the forest and through the trees",
-  },
-  {
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-    name: "Tunnel with morning light",
-  },
-  {
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-    name: "Mountain house",
-  },
-];
 
 //modal buttons
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardModalBtn = document.querySelector(".profile__add-btn");
+const avatarEditModalBtn = document.querySelector(".profile__avatar-edit")
 
 //clsoe buttons
 const closeButtons = document.querySelectorAll(".modal__close-btn");
@@ -59,6 +34,7 @@ const editModal = document.querySelector("#edit-modal");
 const cardModal = document.querySelector("#add-card-modal");
 const previewModal = document.querySelector("#preview-modal");
 const deleteModal = document.querySelector("#delete-card-modal")
+const editAvatarModal = document.querySelector("#edit-avatar-modal")
 
 //profile elements
 const profileNameElement = document.querySelector(".profile__name");
@@ -68,13 +44,19 @@ const profileAvatartElement = document.querySelector(".profile__avatar")
 //forms
 const editFormElement = document.forms["profle-form"];
 const cardFormElement = document.forms["card-form"];
+//const avatarFormElement = document.forms["avatar-form"]
 
 //form elements
 const nameInput = editModal.querySelector("#profile-name-input");
 const jobInput = editModal.querySelector("#profile-description-input");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
+const avatarLinkInput = editAvatarModal.querySelector("#edit-avatar-link-input")
 const cardModalSubmitButton = cardModal.querySelector(".modal__submit-btn");
+const avatarModalSubmitButton = editAvatarModal.querySelector(".modal__submit-btn")
+const editProfileSubmitButton = editModal.querySelector(".modal__submit-btn")
+const deleteModalSubmitButton = deleteModal.querySelector(".modal__delete-btn")
+
 //preview modal elemnts
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
@@ -82,6 +64,8 @@ const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 // delete modal elements
 const deleteModalDeleteBtn = deleteModal.querySelector(".modal__delete-btn")
 const deleteModalCancleBtn = deleteModal.querySelector(".modal__cancel-btn")
+
+
 //functions
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -113,6 +97,24 @@ profileEditButton.addEventListener("click", function () {
   openModal(editModal);
 });
 
+avatarEditModalBtn.addEventListener("click", function () {
+  openModal(editAvatarModal)
+})
+
+avatarModalSubmitButton.addEventListener("click", function (e) {
+  e.preventDefault()
+  const data = {
+    avatar: avatarLinkInput.value
+  }
+  avatarModalSubmitButton.textContent = 'Saving...'
+  api.editAvatar(data).then((dd) => {
+    profileAvatartElement.setAttribute('src', data.avatar)
+    closeModal(editAvatarModal)
+  }).catch((err) => {
+    console.error(err)
+  }).finally(() => avatarModalSubmitButton.textContent = 'save')
+})
+
 cardModalBtn.addEventListener("click", function () {
   openModal(cardModal);
 });
@@ -128,12 +130,13 @@ function handleProfileFormSubmit(evt) {
   const nameValue = nameInput.value;
   const jobValue = jobInput.value;
 
+  editProfileSubmitButton.textContent = 'Saving...'
   api.updateProfileInformation({name: nameValue, about: jobValue}).then(((dd) => {
     profileNameElement.textContent = nameValue.trim();
     profileJobElement.textContent = jobValue.trim();
   })).catch((err) => {
     console.error(err)
-  })
+  }).finally(() => editProfileSubmitButton.textContent = 'save')
 
   // close modal
   closeModal(editModal);
@@ -214,10 +217,11 @@ function renderCard(item, method = "prepend") {
 console.log(deleteModal)
 deleteModalDeleteBtn.addEventListener('click', () => {
   //console.log(currentCardToDelete)
+  deleteModalSubmitButton.textContent = 'Deleting...'
   api.deleteCard(selectedCardId).then((dd) => {
     selectedCardEl.remove()
     closeModal(deleteModal)
-  }).catch((err) => console.error(err))
+  }).catch((err) => console.error(err)).finally(() => deleteModalSubmitButton.textContent = 'Delete')
 })
 
 deleteModalCancleBtn.addEventListener('click', () => {
@@ -246,15 +250,15 @@ function displayInitialCards() {
 
 function handleAddCardSubmit(e) {
   e.preventDefault();
-  api.addNewCard({
+  cardModalSubmitButton.textContent = 'Saving...'
+  const data = {
     name: cardNameInput.value,
     link: cardLinkInput.value,
-  }).then((dd) => 
-      renderCard({
-        name: cardNameInput.value,
-        link: cardLinkInput.value,
-      })
-    ).catch((err) => console.error(err));
+  }
+  api.addNewCard(data).then((dd) => {
+      //console.log(dd)
+      renderCard(dd)
+}).catch((err) => console.error(err)).finally(() => cardModalSubmitButton.textContent = 'Save');
   e.target.reset();
   //disable submit button
   disableButton(cardModalSubmitButton);
