@@ -1,5 +1,9 @@
 import Api from "../utils/Api";
+import { resetValidation, enableValidation, settings, disableButton } from '../scripts/validation'
+import '../pages/index.css'
 
+
+enableValidation(settings)
 
 // changes
 const api = new Api({

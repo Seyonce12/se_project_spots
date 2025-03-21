@@ -1,4 +1,4 @@
-const settings = {
+export const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
@@ -7,17 +7,17 @@ const settings = {
   errorClass: ".modal__error",
 };
 
-const showInputError = (inputElement, errorMsg, config) => {
+export const showInputError = (inputElement, errorMsg, config) => {
   inputElement.nextElementSibling.textContent = errorMsg;
   inputElement.classList.add(config.inputErrorClass);
 };
 
-const hideInputError = (inputElement, config) => {
+export const hideInputError = (inputElement, config) => {
   inputElement.nextElementSibling.textContent = "";
   inputElement.classList.remove(config.inputErrorClass);
 };
 
-const checkInputValidity = (inputElement, config) => {
+export const checkInputValidity = (inputElement, config) => {
   if (!inputElement.validity.valid) {
     showInputError(inputElement, inputElement.validationMessage, config);
   } else {
@@ -25,19 +25,19 @@ const checkInputValidity = (inputElement, config) => {
   }
 };
 
-const hasInvalidInput = (inputList) => {
+export const hasInvalidInput = (inputList) => {
   return inputList.some((input) => {
     return !input.validity.valid;
   });
 };
 
-const resetValidation = (inputList, config) => {
+export const resetValidation = (inputList, config) => {
   inputList.forEach((input) => {
     hideInputError(input, config);
   });
 };
 
-const toggleButtonState = (inputList, buttonElement) => {
+export const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     disableButton(buttonElement);
   } else {
@@ -45,11 +45,11 @@ const toggleButtonState = (inputList, buttonElement) => {
   }
 };
 
-const disableButton = (buttonElement) => {
+export const disableButton = (buttonElement) => {
   buttonElement.disabled = true;
 };
 
-const enableButton = (buttonElement) => {
+export const enableButton = (buttonElement) => {
   buttonElement.disabled = false;
 };
 
@@ -67,11 +67,11 @@ const setEventListeners = (formEl, config) => {
   });
 };
 
-const enableValidation = (config) => {
+export const enableValidation = (config) => {
   const formList = document.querySelectorAll(config.formSelector);
   formList.forEach((formEl) => {
     setEventListeners(formEl, config);
   });
 };
 
-enableValidation(settings);
+//enableValidation(settings);
