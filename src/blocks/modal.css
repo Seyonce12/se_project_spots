@@ -168,6 +168,9 @@
 
 .modal_delete-btns {
   margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .modal__delete-btn, .modal__cancel-btn {
@@ -189,7 +192,6 @@
   background-color: white;
   border: 1px solid black;
   color: black;
-  margin-left: 19px;
 }
 
 @media screen and (max-width: 627px) {
@@ -243,5 +245,9 @@
   .modal__image {
     max-width: 100%;
     border-radius: 4px;
+  }
+
+  .modal_delete-btns {
+    justify-content: center;
   }
 }
