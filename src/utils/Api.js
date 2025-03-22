@@ -6,10 +6,7 @@ class Api {
     }
 
     async makeRequest(endpoint, method = "GET", body = {}) {
-        let res = await fetch(this.baseUrl + endpoint, {
-            headers: this.headers,
-            method: method
-        });
+        let res;
 
         if (method === "PATCH" || method === "POST") {
             res = await fetch(this.baseUrl + endpoint, {
@@ -18,11 +15,17 @@ class Api {
                 body: JSON.stringify(body)
             });
         }
+        else {
+            res = await fetch(this.baseUrl + endpoint, {
+                headers: this.headers,
+                method: method
+            });
+        }
         
-    
         if (res.ok) {
             return res.json();
         }
+        
         return await Promise.reject(`Error: ${res.status}`);
     }
 

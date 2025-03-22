@@ -138,12 +138,11 @@ function handleProfileFormSubmit(evt) {
   api.updateProfileInformation({name: nameValue, about: jobValue}).then(((dd) => {
     profileNameElement.textContent = nameValue.trim();
     profileJobElement.textContent = jobValue.trim();
+    // close modal
+    closeModal(editModal);
   })).catch((err) => {
     console.error(err)
   }).finally(() => editProfileSubmitButton.textContent = 'save')
-
-  // close modal
-  closeModal(editModal);
 }
 
 
@@ -262,11 +261,11 @@ function handleAddCardSubmit(e) {
   api.addNewCard(data).then((dd) => {
       //console.log(dd)
       renderCard(dd)
-}).catch((err) => console.error(err)).finally(() => cardModalSubmitButton.textContent = 'Save');
-  e.target.reset();
-  //disable submit button
-  disableButton(cardModalSubmitButton);
-  closeModal(cardModal);
+      e.target.reset();
+      //disable submit button
+      disableButton(cardModalSubmitButton);
+      closeModal(cardModal);
+  }).catch((err) => console.error(err)).finally(() => cardModalSubmitButton.textContent = 'Save');
 }
 
 
